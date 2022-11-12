@@ -1,9 +1,13 @@
 /*
-Team Memebers: Andy Almeida, Kao Saephan, Nicholas Valencia, Umaran Ahmadzai, Shanil Prasad
+Group Members: Andy Almeida, Kao Saephan, Nicholas Valencia, Umaran Ahmadzai, Shanil Prasad
 
 */
 
-#include basketballClass.h
+#include "basketball_team.h"
+#include "team_strengths.h"
+#include "championshipChance.h"
+
+using namespace BASKETBALL_SPACE; 
 
 int main() {
 
