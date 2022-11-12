@@ -2,11 +2,9 @@
 Group Members: Andy Almeida, Kao Saephan, Nicholas Valencia, Umaran Ahmadzai, Shanil Prasad
 */
 
-#include <string>
 #include "championshipChance.h"
 
 namespace BASKETBALL_SPACE{
-    using namespace std;
 
     //this function simply turns the yourChampionshipChance enumerated class object into a string
     string toStr_yourChampionshipChance( yourChampionshipChance chance ){
