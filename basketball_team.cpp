@@ -7,7 +7,7 @@ Team Members:
 namespace BASKETBALL_SPACE{
   //implement all functions for class basketball_team
   //REMEMBER ALL FUNCTIONS MUST HAVE SCOPE RESOLUTION OPERATOR WHICH ARE DOUBLE COLONS
-  //Format: basketball_team::someFunction()
+  //Format: Basketball_Team::someFunction()
   
   //ALSO REMEMBER ALL GET FUNCTIONS MUST BE DECLARED CONST
   //Format: basketball_team::getFunction() const{ function body }
