@@ -48,3 +48,89 @@ FUNCTIONS of this program
 
 */ 
 
+
+
+
+/*
+    How I would Layout this Program -Andy
+
+    basketball_team.h
+        description: contains a class that will store the data on each team
+        class Basketball_Team
+            data:
+                string name;
+                string conference;
+                double gamesWon;
+                double gamesPlayed;
+                double winRate;
+                double offensePoints;
+                double defensePoints;
+                double weightedScore;
+                yourChampionshipChance probableChance;
+            functions:
+                Basket_Ball(string name, string conference, gamesWon, gamesPlayed, offensePoints, defensePoints){
+                    name = name;
+                    conference = conference;
+                    gamesWon = gamesWon
+                    gamesPlayed = gamesPlayed;
+                    offencePoints = offencePoints;
+                    defencePoints = defencePoints;
+                    winRate = this.calculateWinrate();? or with parameters if this is not possible which i dont think it is
+                    weightedScore = this.calculatedWeightedScore();
+                    probableChance = this.calculateTeamsChances
+
+                }
+                double calculateWinrate();
+                    description: calculate a winrate based on gamesplayed and gameswon
+                    Pseudo:{
+                        return gamesWon/gamesPlayed;
+                    }
+
+                void printChanceAtChampionship();
+                    I personally believe we should make getters, but I prefer overriding <<
+                    Pseduo: {
+                        return probableChance //this is possible with overriding!
+                    }
+
+                double calculateWeightedScore();
+                    description: calculates a score from a base of 100 based on stats
+
+                yourChampionshipChance calculateTeamsChances(); 
+                    description: given the weighted score, apply an appropriate probable chance
+
+    basketball_teamvector.h
+        description: contains a class that will store the vector of basketball_teams along with potential functions
+        class Team_Vector
+            data: 
+                vector<Basketball_Team>
+            functions:
+                I left this ambiguous for unerstanding purposes
+                void print[FIRST 5, LAST5]
+                void print[ALL OF ONE CHANCE]
+                void print[ANYSORTFUNCTION]
+
+    csv_reader.h
+        description:    Honestly, I struggle with file reading, but I envision it being in its own file
+            maybe along the lines of allowing us to do this
+
+        main{
+            basketball_teamvector list1 = csv_reader.basketballreader("FILENAME");
+
+        }
+
+    UI.h
+        description: If we wanted a UI, I think it could be pretty easy if the team vector has good functions
+
+    Overridding.h
+        description: Okay I be wilin out but hear me out, I love doing this for my programs, and it makes debugging a dream
+
+        //Overriding << Operator to cout << Baskteball_Team
+        ostream & operator<<(ostream & out, const Basketball_Team & team);
+
+        //Overriding << Operator to cout << yourChampionshipChance
+        ostream & operator<<(ostream & out, const yourChampionshipChance & probableChance);
+
+        //Overriding << Operator to cout << vector<Basketball_Team>
+        ostream & operator<<(ostream & out, const vector<Basketball_Team> & teamlist);
+*/
+
