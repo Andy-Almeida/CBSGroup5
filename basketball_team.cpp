@@ -3,6 +3,7 @@ Group Members: Andy Almeida, Kao Saephan, Nicholas Valencia, Umaran Ahmadzai, Sh
 */
 
 #include "basketball_team.h"
+#include "championshipChance.h"
 
 namespace BASKETBALL_SPACE{
   //implement all functions for class basketball_team
