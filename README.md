@@ -1,3 +1,5 @@
+Hi Kao -a
+
 Group project: general requirements, deliverables, and deadlines
 CSC340-1 & 5 Fall 2022: self-identified teammates  
 
