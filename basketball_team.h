@@ -10,7 +10,7 @@ declaration of the following class in namespace BASKETBALL_SPACE:
 namespace BASKETBALL_SPACE{
   using namespace std;
   
-  class basketball_team{
+  class Basketball_Team{
     public:
     //declare all setters and getters
     //declare a function prototype called "calculateWinrate"
