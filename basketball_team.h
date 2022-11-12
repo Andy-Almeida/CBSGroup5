@@ -13,16 +13,19 @@ namespace BASKETBALL_SPACE{
   class Basketball_Team{
     public:
     //declare all setters and getters
-    //declare a function prototype called "calculateWinrate"
+
+    double calculateWinrate(double gamesWOns, double gamesPlayed); //this is a function
+    void printChanceAtChampionship(); //this is a function
     
     private:
-    //declare three private fields
-    //games won
-    //games played
-    //winrate
-  };
+    //declare variables in private fields
+    double gamesWon;
+    double gamesPlayed;
+    double winRate;
+    yourChampionshipChance probableChance;
+
+  }; //end of BasketBall_team class
   
 } //end of BASKETBALL_SPACE
-
 
 #endif //end of basketball_team_h 
