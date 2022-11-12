@@ -4,7 +4,7 @@ CSC340-1 & 5 Fall 2022: self-identified teammates
 General requirements: 
   Work as a group and select one of the following real-world datasets to analyze 
     
-    College basketball scores  
+    -> College basketball scores <- https://www.kaggle.com/datasets/andrewsundberg/college-basketball-dataset
     TMDB 5000 Movie Dataset
     Student Alcohol Consumption
     Where it Pays to Attend College        
