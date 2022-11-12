@@ -25,6 +25,7 @@ Minimum requirements in your C++ implementation:
 Two Major Phases: Ideation, Implementation, and Demonstration
 
   Phase 1: Project Ideation and Description
+  Draft Proposal Link: https://docs.google.com/document/d/1rbDNaCx8bd5xGO2U9twHXkd4pC8WsigXdJOwb1kuIyU/edit?usp=sharing
   
     Work as a team to select and define the problem you would like to work on. 
     Make sure you follow the S.M.A.R.T. guidelines when working on this phase. 
