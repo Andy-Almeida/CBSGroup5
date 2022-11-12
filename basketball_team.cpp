@@ -1,5 +1,5 @@
 /*
-Team Members:
+Group Members: Andy Almeida, Kao Saephan, Nicholas Valencia, Umaran Ahmadzai, Shanil Prasad
 */
 
 #include "basketball_team.h"
