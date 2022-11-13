@@ -7,6 +7,8 @@ declaration of the following class in namespace BASKETBALL_SPACE:
 #ifndef basketball_team_h
 #define basketball_team_h
 
+#include "headers.h"
+
 namespace BASKETBALL_SPACE{
   using namespace std;
   
@@ -18,7 +20,6 @@ namespace BASKETBALL_SPACE{
     
       //Default Constructor
       Basketball_Team();
-
       //Parameterized Constructor
       Basketball_Team(string name, string conference, double gamesWon, double gamesPlayed, double offencePoints, double defencePoints);
 
