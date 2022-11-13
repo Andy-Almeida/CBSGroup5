@@ -13,13 +13,14 @@ namespace BASKETBALL_SPACE{
   using namespace std;
   
   //A class to classify each team with a Championship Win Chance
-  enum class yourChampionshipChance {GreatChance, GoodChance, LowChance, ExtremelyUnlikely };
+  enum class yourChampionshipChance {GreatChance, GoodChance, LowChance, ExtremelyUnlikely, NA};
 
   class Basketball_Team{
     public:
     
       //Default Constructor
       Basketball_Team();
+
       //Parameterized Constructor
       Basketball_Team(string name, string conference, double gamesWon, double gamesPlayed, double offencePoints, double defencePoints);
 
@@ -32,9 +33,28 @@ namespace BASKETBALL_SPACE{
       //enum class yourChampionshipChance {GreatChance, GoodChance, LowChance, ExtremelyUnlikely }
       yourChampionshipChance calculateTeamsChances(double weightedScore); //this is a function
 
-      //Getters and Setters
-      void printChanceAtChampionship();
+      //Getters
+      string getName() const;
+      string getConference() const;
+      double getGamesWon() const;
+      double getGamesPlayed() const;
+      double getWinRate() const;    
+      double getOffensePoints() const;
+      double getDefensePoints() const;
+      double getWeightedScore() const;
+      yourChampionshipChance getProbableChance() const;
 
+      //Setters
+      void setName(string newName);
+      void setConference(string newConference);
+      void setGamesWon(double newGamesWon);
+      void setGamesPlayed(double newGamesPlayed);
+      void setWinRate(double newWinRate);
+      void setOffencePoints(double newOffencePoints);
+      void setDefencePoints(double newDefencePoints);
+      void setWeightedScore(double newWeightedScore);
+      void setOffencePoints(yourChampionshipChance newChance);
+      
     private:
       string name;
       string conference;

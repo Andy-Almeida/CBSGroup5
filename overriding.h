@@ -11,7 +11,7 @@ namespace BASKETBALL_SPACE{
     //I love doing this for my programs, and it makes debugging a dream
 
         //Overriding << Operator to cout << Baskteball_Team
-        ostream & operator<<(ostream & out, const Basketball_Team & team);
+        ostream & operator<<(ostream & out, const BASKETBALL_SPACE::Basketball_Team & team);
 
         //Overriding << Operator to cout << yourChampionshipChance
         ostream & operator<<(ostream & out, const yourChampionshipChance & probableChance);
