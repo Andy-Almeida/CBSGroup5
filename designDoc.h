@@ -4,7 +4,7 @@ Everything in this file is commented!!
 Group Members: Andy Almeida, Kao Saephan, Nicholas Valencia, Umaran Ahmadzai, Shanil Prasad
 
 
-What this whole program does:
+What this whole program does: This need revising
     Main function:
         1) read in files from 2021, 2020, and 2019 to obtain the team names, games won, games played. 
         2) Creates a basketball_team class that will store the team names, games won, games played
@@ -14,49 +14,13 @@ What this whole program does:
         5) Creates a vector<basketball_team> that stores basketball_team objects
         6) Call printStatistics() to print out a team's teamName, weightedScore, winRate, thisTeamsChances.
 
-Interactive Component:
-    We would like to create an interactive UI so the user can look up a team's name 
-    and see the team's statistics: teamName, weightedScore, winRate, thisTeamsChances
-    We need to discuss if we want to implement this. 
-     
-  
-FUNCTIONS of this program
-    from class team_strengths, this is a helper class 
-        //this function takes in the raw offense, defense, and winRate scores then gives them a weighted score out of 100. 
-        double calculateTeamStrength(double offensePoints, double defensePoints, double winRate2021); //this is a function
-
-        //based on the weighted score out of 100, this function calculates yourChampionshipChance 
-        // and calls the toStr_yourChampionshipChance function to return a string of that chance 
-        //here is the enumerated class from championshipChance.h file: 
-        //enum class yourChampionshipChance {GreatChance, GoodChance, LowChance, ExtremelyUnlikely }
-        string calculateTeamsChances(double weightedScore); //this is a function
-
-    from class basketball_team, this is our central class
-        //this is a function that calculates cumulative winRate from the years 2021, 2020, 2019
-        double calculateWinrate(double gamesWOns, double gamesPlayed);
-
-        //this is a function that prints teamName, weightedScore, winRate, thisTeamsChances. 
-        //be sure to convert thisTeamsChances into a string by calling the function toStr_yourChampionshipChance 
-        void printChanceAtChampionship();
-
-    from championshipChance.h which is a utility file
-        //this enumerated class we use to assign a team's chance at the championships
-        enum class yourChampionshipChance {GreatChance, GoodChance, LowChance, ExtremelyUnlikely };
-
-        //this is the to_string function for our enumerated class 
-        string toStr_yourChampionshipChance( yourChampionshipChance chance )
-
-*/ 
-
-
-
-
-/*
-    How I would Layout this Program -Andy
-
     basketball_team.h
-        description: contains a class that will store the data on each team
+        enum class yourChampionshipChance
+            description: a class that contains four labels correlating to levels of chance to win a championship
+            data: {GreatChance, GoodChance, LowChance, ExtremelyUnlikely }
+  
         class Basketball_Team
+            description: a class that will allow for data allocation for each team
             data:
                 string name;
                 string conference;
@@ -68,7 +32,16 @@ FUNCTIONS of this program
                 double weightedScore;
                 yourChampionshipChance probableChance;
             functions:
-                Basket_Ball(string name, string conference, gamesWon, gamesPlayed, offensePoints, defensePoints){
+                Default Constructor
+                Basketball_Team(); 
+                    Make default stats
+                    double = 0
+                    string "N/A"
+                    yourChapmionshipChance = "Extremely Unlikely" or we could make a new member to the list "N/A"
+
+
+                Parameterize Constructor
+                Basketball_Team(string name, string conference, gamesWon, gamesPlayed, offensePoints, defensePoints){
                     name = name;
                     conference = conference;
                     gamesWon = gamesWon
@@ -80,16 +53,12 @@ FUNCTIONS of this program
                     probableChance = this.calculateTeamsChances
 
                 }
-                double calculateWinrate();
+
+                The following calculations can be placed within the Constructor allowing for the objects data to be completed on Instantiation
+                double calculateWinrate(double gamesWon, double gamesPlayed);
                     description: calculate a winrate based on gamesplayed and gameswon
                     Pseudo:{
                         return gamesWon/gamesPlayed;
-                    }
-
-                void printChanceAtChampionship();
-                    I personally believe we should make getters, but I prefer overriding <<
-                    Pseduo: {
-                        return probableChance //this is possible with overriding!
                     }
 
                 double calculateWeightedScore();
@@ -98,6 +67,12 @@ FUNCTIONS of this program
                 yourChampionshipChance calculateTeamsChances(); 
                     description: given the weighted score, apply an appropriate probable chance
 
+                void printChanceAtChampionship();
+                    I personally believe we should make getters, but I prefer overriding <<
+                    Pseduo: {
+                        return probableChance //this is possible with overriding!
+                    }
+
     basketball_teamvector.h
         description: contains a class that will store the vector of basketball_teams along with potential functions
         class Team_Vector
@@ -105,6 +80,8 @@ FUNCTIONS of this program
                 vector<Basketball_Team>
             functions:
                 I left this ambiguous for unerstanding purposes
+                void addTeam(Basketball_Team team);
+                void getTeam(string name);
                 void print[FIRST 5, LAST5]
                 void print[ALL OF ONE CHANCE]
                 void print[ANYSORTFUNCTION]
@@ -132,5 +109,10 @@ FUNCTIONS of this program
 
         //Overriding << Operator to cout << vector<Basketball_Team>
         ostream & operator<<(ostream & out, const vector<Basketball_Team> & teamlist);
+
+    Unittests.h
+        //An area for unit testing and building our program.
+
+    For the headers, I might be doing too much with this many files, but a file for header files could be good too!
 */
 

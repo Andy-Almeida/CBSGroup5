@@ -4,8 +4,9 @@ Group Members: Andy Almeida, Kao Saephan, Nicholas Valencia, Umaran Ahmadzai, Sh
 */
 
 #include "basketball_team.h"
-#include "team_strengths.h"
-#include "championshipChance.h"
+#include "basketball_teamvector.h"
+#include "csv_reader.h"
+#include "UI.h"
 
 using namespace BASKETBALL_SPACE; 
 

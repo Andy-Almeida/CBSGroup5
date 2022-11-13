@@ -10,29 +10,41 @@ declaration of the following class in namespace BASKETBALL_SPACE:
 namespace BASKETBALL_SPACE{
   using namespace std;
   
+  //A class to classify each team with a Championship Win Chance
+  enum class yourChampionshipChance {GreatChance, GoodChance, LowChance, ExtremelyUnlikely };
+
   class Basketball_Team{
     public:
-    //declare constructor(s)
-    //declare all setters and getters
-    //ALSO REMEMBER ALL GET FUNCTIONS MUST BE DECLARED CONST
-
-
-    //this is a function that calculates cumulative winRate from the years 2021, 2020, 2019
-    double calculateWinrate(double gamesWOns, double gamesPlayed); 
     
-    //this is a function that prints teamName, weightedScore, winRate, thisTeamsChances. 
-    //be sure to convert thisTeamsChances into a string by calling the function toStr_yourChampionshipChance 
-    void printStatistics(); 
-    
+      //Default Constructor
+      Basketball_Team();
+
+      //Parameterized Constructor
+      Basketball_Team(string name, string conference, double gamesWon, double gamesPlayed, double offencePoints, double defencePoints);
+
+      double calculateWinrate(double gamesWon, double gamesPlayed); //this is a function
+
+      //this function takes in the raw offense, defense, and winRate scores then gives them a weighted score out of 100. 
+      double calculateWeightedScore(double offensePoints, double defensePoints, double winRate); 
+
+      //based on the weighted score out of 100, this function calculates yourChampionshipChance from
+      //enum class yourChampionshipChance {GreatChance, GoodChance, LowChance, ExtremelyUnlikely }
+      yourChampionshipChance calculateTeamsChances(double weightedScore); //this is a function
+
+      //Getters and Setters
+      void printChanceAtChampionship();
+
     private:
-    //declare variables in private fields
-    string teamName;
-    double weightedScore;
-    double gamesWon;
-    double gamesPlayed;
-    double winRate;
-    yourChampionshipChance thisTeamsChances;
-    
+      string name;
+      string conference;
+      double gamesWon;
+      double gamesPlayed;
+      double winRate;    
+      double offensePoints;
+      double defensePoints;
+      double weightedScore;
+      yourChampionshipChance probableChance;
+
   }; //end of BasketBall_team class
   
 } //end of BASKETBALL_SPACE
