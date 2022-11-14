@@ -65,7 +65,6 @@ namespace BASKETBALL_SPACE{
       double defensePoints;
       double weightedScore;
       yourChampionshipChance probableChance;
-
   }; //end of BasketBall_team class
   
 } //end of BASKETBALL_SPACE

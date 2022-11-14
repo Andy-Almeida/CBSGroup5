@@ -4,8 +4,8 @@
 namespace BASKETBALL_SPACE{
   using namespace std;
   
-//I would use this for the CSV Reader Class
-//Use this space for any functions or anything for that
+  //I would use this for the CSV Reader Class
+  //Use this space for any functions or anything for that
 
 } //end of BASKETBALL_SPACE
 

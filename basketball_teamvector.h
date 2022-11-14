@@ -22,12 +22,14 @@ namespace BASKETBALL_SPACE{
 
     private:
         vector<Basketball_Team> teamlist;
-    
-        //not sure what this string is for -kao
-        string listname;
+
+      // vector<Basketball_Team> vector1;
+      // vector<Basketball_Team> vector2;
+      // vector<Basketball_Team> vector3;
 
   }; //end of BasketBall_team class
   
 } //end of BASKETBALL_SPACE
 
 #endif //end of basketball_team_h 
+
