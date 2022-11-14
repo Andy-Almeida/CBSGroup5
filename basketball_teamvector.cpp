@@ -4,6 +4,7 @@ Implementation of the basketball_teamvector.h functions
 */
 
 #include "basketball_teamvector.h"
+#include "basketball_team.h"
 
 namespace BASKETBALL_SPACE{
 
