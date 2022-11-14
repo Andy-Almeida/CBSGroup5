@@ -17,6 +17,7 @@ namespace BASKETBALL_SPACE{
         //Get team from the list using thier name
         Basketball_Team getTeam(string name);
 
+        void printTop5(Basketball_Team team);
         //Add any function for vector manipulation
 
     private:
