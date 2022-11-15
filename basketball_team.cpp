@@ -3,6 +3,7 @@ Group Members: Andy Almeida, Kao Saephan, Nicholas Valencia, Umaran Ahmadzai, Sh
 */
 
 #include "basketball_team.h"
+#include "headers.h"
 
 namespace BASKETBALL_SPACE{
   //implement all functions for class basketball_team
@@ -14,6 +15,7 @@ namespace BASKETBALL_SPACE{
   
   //REMEMBER EVERYTHING MUST STAY INSIDE THE NAMESPACE BASKETBALL_SPACE
 
+  //default Constructor
   Basketball_Team::Basketball_Team(){
       name = "N/A";
       conference = "N/A";
