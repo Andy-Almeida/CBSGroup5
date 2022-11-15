@@ -2,6 +2,9 @@
 declaration of the following class in namespace BASKETBALL_SPACE:
   -class basketball_team
   
+contains our enumerated class yourChampionshipChance
+contains the to_string function for our enumerated class
+  
 */
 
 #ifndef basketball_team_h
@@ -22,12 +25,14 @@ namespace BASKETBALL_SPACE{
       Basketball_Team();
 
       //Parameterized Constructor
-      Basketball_Team(string name, string conference, double gamesWon, double gamesPlayed, double offencePoints, double defencePoints);
+      Basketball_Team(string newName, string newConference, double newGamesWon, double newGamesPlayed, double newOffensePoints, double newDefensePoints);
 
+      //this function calculates win rate based on games won and games played in a single year
       double calculateWinrate(double gamesWon, double gamesPlayed); //this is a function
 
       //this function takes in the raw offense, defense, and winRate scores then gives them a weighted score out of 100. 
-      double calculateWeightedScore(double offensePoints, double defensePoints, double winRate); 
+      //Took out winRate as part of the score b/c we dont know avg scores so it became too difficult to predict how to assign points based on win rate
+      double calculateWeightedScore(double offensePoints, double defensePoints); 
 
       //based on the weighted score out of 100, this function calculates yourChampionshipChance from
       //enum class yourChampionshipChance {GreatChance, GoodChance, LowChance, ExtremelyUnlikely }
@@ -50,7 +55,7 @@ namespace BASKETBALL_SPACE{
       void setGamesWon(double newGamesWon);
       void setGamesPlayed(double newGamesPlayed);
       void setWinRate(double newWinRate);
-      void setOffencePoints(double newOffencePoints);
+      void setOffensePoints(double newOffencePoints);
       void setDefencePoints(double newDefencePoints);
       void setWeightedScore(double newWeightedScore);
       void setOffencePoints(yourChampionshipChance newChance);
@@ -65,8 +70,29 @@ namespace BASKETBALL_SPACE{
       double defensePoints;
       double weightedScore;
       yourChampionshipChance probableChance;
+
   }; //end of BasketBall_team class
-  
+
+  //I think that this could be put into overrides
+  //this function simply turns the yourChampionshipChance enumerated class object into a string
+  inline
+  string toStr_yourChampionshipChance( yourChampionshipChance chance ){
+      switch (chance){
+          case yourChampionshipChance::GreatChance:
+              return "Great Chance";
+          case yourChampionshipChance::GoodChance:
+              return "Good Chance";
+          case yourChampionshipChance::LowChance:
+              return "Low Chance";
+          case yourChampionshipChance::ExtremelyUnlikely:
+              return "Extremely Unlikely";
+          default:  //this will not happen. just to make this compiler not generate a warning.
+              return "Nobody Knows, this could be an error";  
+      } 
+  }
+
+
 } //end of BASKETBALL_SPACE
 
 #endif //end of basketball_team_h 
+
