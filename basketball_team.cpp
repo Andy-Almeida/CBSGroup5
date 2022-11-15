@@ -25,7 +25,93 @@ namespace BASKETBALL_SPACE{
       weightedScore = 0;
       probableChance = yourChampionshipChance::NA;
   }
+  
+   //Paramaterized Constructor
+  Basketball_Team::Basketball_Team(string newName, string newConference, double newGamesWon, double newGamesPlayed, double newOffensePoints, double newDefensePoints) {
+      name = newName;
+      conference = newConference;
+      gamesWon = newGamesWon;
+      gamesPlayed = newGamesPlayed;
+      winRate = 0;
+      offensePoints = newOffensePoints;
+      defensePoints = newDefensePoints;
+      weightedScore = 0;
+      probableChance = yourChampionshipChance::NA;
+  }
 
+  //Setters 
+  void Basketball_Team::setName(string newName){
+    name = newName;
+  }
+
+  void Basketball_Team::setConference(string newConference){
+    conference = newConference;
+  }
+
+  void Basketball_Team::setGamesWon(double newGamesWon){
+    gamesWon = newGamesWon;
+  }
+      
+  void Basketball_Team::setGamesPlayed(double newGamesPlayed){
+    gamesPlayed = newGamesPlayed;
+  }
+
+  void Basketball_Team::setWinRate(double newWinRate){
+    winRate = newWinRate;
+  }
+
+  void Basketball_Team::setOffensePoints(double newOffensePoints){
+    offensePoints = newOffensePoints;
+  }
+
+  void Basketball_Team::setDefencePoints(double newDefensePoints){
+    defensePoints = newDefensePoints;
+  }
+
+  void Basketball_Team::setWeightedScore(double newWeightedScore){
+    weightedScore = newWeightedScore;
+  }
+
+  void Basketball_Team::setOffencePoints(yourChampionshipChance newChance){
+    probableChance = newChance;
+  }
+
+  //Getters
+  string Basketball_Team::getName() const{
+    return name;
+  }
+
+  string Basketball_Team::getConference() const{
+    return conference;
+  }
+
+  double Basketball_Team::getGamesWon() const{
+    return gamesWon;
+  }
+
+  double Basketball_Team::getGamesPlayed() const{
+    return gamesPlayed;
+  }
+
+  double Basketball_Team::getWinRate() const{
+    return winRate;
+  }    
+
+  double Basketball_Team::getOffensePoints() const{
+    return offensePoints;
+  }
+    
+  double Basketball_Team::getDefensePoints() const{
+    return defensePoints;
+  }
+
+  double Basketball_Team::getWeightedScore() const{
+    return weightedScore;
+  }
+
+  yourChampionshipChance Basketball_Team::getProbableChance() const{
+    return probableChance;
+  }
   //Getters
     string Basketball_Team::getName() const{
       return name;
@@ -62,22 +148,75 @@ namespace BASKETBALL_SPACE{
       return probableChance;
     }
 
-  //I think that this could be put into overrides
-  //this function simply turns the yourChampionshipChance enumerated class object into a string
-  string toStr_yourChampionshipChance( yourChampionshipChance chance ){
-      switch (chance){
-          case yourChampionshipChance::GreatChance:
-              return "Great Chance";
-          case yourChampionshipChance::GoodChance:
-              return "Good Chance";
-          case yourChampionshipChance::LowChance:
-              return "Low Chance";
-          case yourChampionshipChance::ExtremelyUnlikely:
-              return "Extremely Unlikely";
-          default:  //this will not happen. just to make this compiler not generate a warning.
-              return "Nobody Knows, this could be an error";  
-      } 
-  }//end of the function 
+  //this function calculates win rate based on games won and games played in a single year
+  double Basketball_Team::calculateWinrate(double gamesWon, double gamesPlayed){
+    return (gamesWon / gamesPlayed);
+  }
   
+   //this function takes in the raw offense, defense, and winRate scores then gives them a weighted score out of 100. 
+  //Took out winRate as part of the score b/c we dont know avg scores so it became too difficult to predict how to assign points based on win rate
+  double Basketball_Team::calculateWeightedScore(double offensePoints, double defensePoints){
+    //control variable track score
+    double weightScore = 0;
+      
+      //assigning points based on generic avg offense points
+      if (offensePoints >= 120) {
+        weightScore = weightScore + 50;
+      }
+      else if (offensePoints >= 110 && offensePoints < 120) {
+        weightScore = weightScore + 40;
+      }
+      else if (offensePoints >= 100 && offensePoints < 110) {
+        weightScore = weightScore + 30;
+      }
+      else if (offensePoints >= 90 && offensePoints < 100) {
+        weightScore = weightScore + 20;
+      }
+      else if (offensePoints < 90) {
+        weightScore = weightScore + 10;
+      }
+
+      //assign points based on generic avg defense points
+      if (defensePoints >= 110) {
+        weightScore = weightScore + 50;
+      }
+      else if (defensePoints >= 105 && offensePoints < 110) {
+        weightScore = weightScore + 40;
+      }
+      else if (defensePoints >= 100 && offensePoints < 105) {
+        weightScore = weightScore + 30;
+      }
+      else if (defensePoints >= 95 && offensePoints < 100) {
+        weightScore = weightScore + 20;
+      }
+      else if (defensePoints < 95) {
+        weightScore = weightScore + 10;
+      }
+
+    //output the control variable
+    return weightScore;
+  } 
+
+  
+  //based on the weighted score out of 100, this function calculates yourChampionshipChance from
+  //enum class yourChampionshipChance {GreatChance, GoodChance, LowChance, ExtremelyUnlikely }
+  yourChampionshipChance Basketball_Team::calculateTeamsChances(double weightedScore){
+    if (weightedScore <= 100.0 && weightedScore >= 0.0){
+      if (weightedScore >= 90){
+        return yourChampionshipChance::GreatChance;
+      }
+      else if(weightedScore >= 80 && weightedScore < 90) {
+        return yourChampionshipChance::GoodChance;
+      }
+      else if(weightedScore >= 70 && weightedScore < 80) {
+        return yourChampionshipChance::LowChance;
+      }
+      else if(weightedScore <= 60) {
+        return yourChampionshipChance::ExtremelyUnlikely;
+      }
+    }
+    return yourChampionshipChance::NA;
+
+  }//end of the function 
   
 } //end of BASKETBALL_SPACE
