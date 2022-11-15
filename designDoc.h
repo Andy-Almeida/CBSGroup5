@@ -41,7 +41,7 @@ What this whole program does: This need revising
                     yourChapmionshipChance = "Extremely Unlikely" or we could make a new member to the list "N/A"
 
 
-                Parameterize Constructor [**NEEDS WORK**]
+                Parameterize Constructor [COMPLETE]
                 Basketball_Team(string name, string conference, gamesWon, gamesPlayed, offensePoints, defensePoints){
                     name = name;
                     conference = conference;
@@ -57,22 +57,22 @@ What this whole program does: This need revising
 
                 Getters [COMPLETED]
 
-                Setters [**NEEDS WORK**]
+                Setters [COMPLETE]
 
                 The following calculations can be placed within the Constructor allowing for the objects data to be completed on Instantiation
-                double calculateWinrate(double gamesWon, double gamesPlayed); [**NEEDS WORK**]
+                double calculateWinrate(double gamesWon, double gamesPlayed); [COMPLETE]
                     description: calculate a winrate based on gamesplayed and gameswon
                     Pseudo:{
                         return gamesWon/gamesPlayed;
                     }
 
-                double calculateWeightedScore(); [**NEEDS WORK**]
+                double calculateWeightedScore(); [COMPLETE]
                     description: calculates a score from a base of 100 based on stats
 
-                yourChampionshipChance calculateTeamsChances(); [**NEEDS WORK**]
+                yourChampionshipChance calculateTeamsChances(); [COMPLETE]
                     description: given the weighted score, apply an appropriate probable chance
 
-                void printChanceAtChampionship(); [**NEEDS WORK**]
+                void printChanceAtChampionship(); [COMPLETE] //the toStr_yourChampionshipChance works, we can override at a later time
                     I personally believe we should make getters, but I prefer overriding <<
                     Pseduo: {
                         return probableChance //this is possible with overriding!
