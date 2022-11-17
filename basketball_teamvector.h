@@ -22,13 +22,20 @@ namespace BASKETBALL_SPACE{
         Basketball_Team getTeam(string name, int year);
 
         void printTop5(Basketball_Team team);
-        //Add any function for vector manipulation'
+        
+         //checks if the name if the school is in the list
+        bool checkName(string nameCheck);
+
 
 
         // this function will set the vector with basketball team objects using cbb19.csv and cbb20.csv and cbb21.csv
         void setYear2019();
         void setYear2020();
         void setYear2021();
+    
+        //print function: cumulative winrate, conference, weighted score, Chance at championship
+        void printData(string teamName);
+
 
     private:
         vector<Basketball_Team> teamlist;
