@@ -1,10 +1,10 @@
 /*
 declaration of the following class in namespace BASKETBALL_SPACE:
   -class basketball_team
-  
+
 contains our enumerated class yourChampionshipChance
 contains the to_string function for our enumerated class
-  
+
 */
 
 #ifndef basketball_team_h
@@ -15,28 +15,32 @@ contains the to_string function for our enumerated class
 namespace BASKETBALL_SPACE{
   using namespace std;
   
-  //A class to classify each team with a Championship Win Chance
+  //A class to classify each team with a Championship Win Chance -kao
   enum class yourChampionshipChance {GreatChance, GoodChance, LowChance, ExtremelyUnlikely, NA};
 
   class Basketball_Team{
     public:
-    
-      //Default Constructor
+
+      //Default Constructor 
       Basketball_Team();
 
       //Parameterized Constructor
       Basketball_Team(string newName, string newConference, double newGamesWon, double newGamesPlayed, double newOffensePoints, double newDefensePoints);
 
       //this function calculates win rate based on games won and games played in a single year
-      double calculateWinrate(double gamesWon, double gamesPlayed); //this is a function
+      double calculateWinrate(double gamesWon, double gamesPlayed);
 
-      //this function takes in the raw offense, defense, and winRate scores then gives them a weighted score out of 100. 
+      //this function takes in the raw offense, defense, and winRate scores then gives them a weighted score out of 100.
       //Took out winRate as part of the score b/c we dont know avg scores so it became too difficult to predict how to assign points based on win rate
       double calculateWeightedScore(double offensePoints, double defensePoints); 
 
       //based on the weighted score out of 100, this function calculates yourChampionshipChance from
       //enum class yourChampionshipChance {GreatChance, GoodChance, LowChance, ExtremelyUnlikely }
       yourChampionshipChance calculateTeamsChances(double weightedScore); //this is a function
+
+      //I think that this could be put into overrides
+      //this function simply turns the yourChampionshipChance enumerated class object into a string
+      string toStr_yourChampionshipChance( yourChampionshipChance chance );
 
       //Getters
       string getName() const;
@@ -73,26 +77,6 @@ namespace BASKETBALL_SPACE{
 
   }; //end of BasketBall_team class
 
-  //I think that this could be put into overrides
-  //this function simply turns the yourChampionshipChance enumerated class object into a string
-  inline
-  string toStr_yourChampionshipChance( yourChampionshipChance chance ){
-      switch (chance){
-          case yourChampionshipChance::GreatChance:
-              return "Great Chance";
-          case yourChampionshipChance::GoodChance:
-              return "Good Chance";
-          case yourChampionshipChance::LowChance:
-              return "Low Chance";
-          case yourChampionshipChance::ExtremelyUnlikely:
-              return "Extremely Unlikely";
-          default:  //this will not happen. just to make this compiler not generate a warning.
-              return "Nobody Knows, this could be an error";  
-      } 
-  }
-
-
 } //end of BASKETBALL_SPACE
 
 #endif //end of basketball_team_h 
-
