@@ -120,44 +120,61 @@ namespace BASKETBALL_SPACE{
     return ((gamesWon / gamesPlayed)*100);
   }
 
-  //this function takes in the raw offense, defense, and winRate scores then gives them a weighted score out of 100. 
-  //Took out winRate as part of the score b/c we dont know avg scores so it became too difficult to predict how to assign points based on win rate
+   //this function takes in the raw offense, defense, and winRate scores then gives them a weighted score out of 100. 
   double Basketball_Team::calculateWeightedScore(double offensePoints, double defensePoints){
     //control variable track score
     double weightScore = 0;
+    double winrate = calculateWinrate(this->getGamesWon(), this->getGamesPlayed());
       
       //assigning points based on generic avg offense points
-      if (offensePoints >= 120) {
-        weightScore = weightScore + 50;
-      }
-      else if (offensePoints >= 110 && offensePoints < 120) {
-        weightScore = weightScore + 40;
-      }
-      else if (offensePoints >= 100 && offensePoints < 110) {
+      if (offensePoints >= 110) {
         weightScore = weightScore + 30;
       }
-      else if (offensePoints >= 90 && offensePoints < 100) {
-        weightScore = weightScore + 20;
+      else if (offensePoints >= 100 && offensePoints < 110) {
+        weightScore = weightScore + 24;
       }
-      else if (offensePoints < 90) {
-        weightScore = weightScore + 10;
+      else if (offensePoints >= 90 && offensePoints < 100) {
+        weightScore = weightScore + 18;
+      }
+      else if (offensePoints >= 80 && offensePoints < 90) {
+        weightScore = weightScore + 12;
+      }
+      else if (offensePoints < 80) {
+        weightScore = weightScore + 6;
       }
 
       //assign points based on generic avg defense points
-      if (defensePoints >= 110) {
-        weightScore = weightScore + 50;
-      }
-      else if (defensePoints >= 105 && offensePoints < 110) {
-        weightScore = weightScore + 40;
-      }
-      else if (defensePoints >= 100 && offensePoints < 105) {
+      if (defensePoints >= 105) {
         weightScore = weightScore + 30;
       }
-      else if (defensePoints >= 95 && offensePoints < 100) {
-        weightScore = weightScore + 20;
+      else if (defensePoints >= 100 && offensePoints < 105) {
+        weightScore = weightScore + 24;
       }
-      else if (defensePoints < 95) {
-        weightScore = weightScore + 10;
+      else if (defensePoints >= 95 && offensePoints < 100) {
+        weightScore = weightScore + 18;
+      }
+      else if (defensePoints >= 90 && offensePoints < 95) {
+        weightScore = weightScore + 12;
+      }
+      else if (defensePoints < 90) {
+        weightScore = weightScore + 6;
+      }
+
+      //assign points based on generic avg winrate
+      if (winrate >= 70) {
+        weightScore = weightScore + 40;
+      }
+      else if (winrate >= 60 && winrate < 70) {
+        weightScore = weightScore + 32;
+      }
+      else if (winrate >= 50 && winrate < 60) {
+        weightScore = weightScore + 24;
+      }
+      else if (winrate >= 40 && winrate < 50) {
+        weightScore = weightScore + 16;
+      }
+      else if (winrate < 40) {
+        weightScore = weightScore + 8;
       }
 
     //output the control variable
@@ -167,10 +184,10 @@ namespace BASKETBALL_SPACE{
   //this function simply turns the yourChampionshipChance enumerated class object into a string 
   string Basketball_Team::toStr_yourChampionshipChance( yourChampionshipChance chance ){
       switch (chance){
-          case yourChampionshipChance::GreatChance:
-              return "Great Chance";
-          case yourChampionshipChance::GoodChance:
-              return "Good Chance";
+          case yourChampionshipChance::HighChance:
+              return "High Chance";
+          case yourChampionshipChance::MedChance:
+              return "Med Chance";
           case yourChampionshipChance::LowChance:
               return "Low Chance";
           case yourChampionshipChance::ExtremelyUnlikely:
@@ -179,26 +196,25 @@ namespace BASKETBALL_SPACE{
               return "Nobody Knows, this could be an error";  
       } 
   }
-
+  
   //based on the weighted score out of 100, this function calculates yourChampionshipChance from
   //enum class yourChampionshipChance {GreatChance, GoodChance, LowChance, ExtremelyUnlikely } 
   yourChampionshipChance Basketball_Team::calculateTeamsChances(double weightedScore){
     if (weightedScore <= 100.0 && weightedScore >= 0.0){
-      if (weightedScore >= 90){
-        return yourChampionshipChance::GreatChance;
+      if (weightedScore >= 75){
+        return yourChampionshipChance::HighChance;
       }
-      else if(weightedScore >= 80 && weightedScore < 90) {
-        return yourChampionshipChance::GoodChance;
+      else if(weightedScore >= 60 && weightedScore < 75) {
+        return yourChampionshipChance::MedChance;
       }
-      else if(weightedScore >= 70 && weightedScore < 80) {
+      else if(weightedScore >= 40 && weightedScore < 60) {
         return yourChampionshipChance::LowChance;
       }
-      else if(weightedScore <= 60) {
+      else if(weightedScore < 40) {
         return yourChampionshipChance::ExtremelyUnlikely;
       }
     }
     return yourChampionshipChance::NA;
-
   }//end of the function 
   
 } //end of BASKETBALL_SPACE
