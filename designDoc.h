@@ -86,12 +86,12 @@ What this whole program does: This need revising
             functions:
                 void addTeam(Basketball_Team team); [COMPLETED]
                 void getTeam(string name);  [COMPLETED]
-                double getTeamWin(string name); [**NEEDS WORK**]
-                yourChampionshipChance getWinChance(string name); [**NEEDS WORK**]
+                double getTeamWin(string name); [COMPLETE]
+                yourChampionshipChance getWinChance(string name); [COMPLETE]
 
 
     //Cumulative WinRate Given Multiple Years
-    double calcWinRate(string name, vector<Basketball_Team> Year1, vector<Basketball_Team> year2, vector<Basketball_Team> year3){ [**NEEDS WORK**]
+    double calcWinRate(string name, vector<Basketball_Team> Year1, vector<Basketball_Team> year2, vector<Basketball_Team> year3){ [COMPLETE]
         Total = Year1.getTeamWin(name) + Year2.getTeamWin(name) + Year3.getTeamWin(name);
         return Total/3;
     }
@@ -143,11 +143,11 @@ What this whole program does: This need revising
 /*
 Personal Milestones:
 
-Milestone 1: A Completed Vector List of Basketball PLayers pulled from a CSV File of Data from a Single Year, and make multiple ones for multiple years. 
+Milestone 1: A Completed Vector List of Basketball PLayers pulled from a CSV File of Data from a Single Year, and make multiple ones for multiple years. [COMPLETE]
 
-Milestone 1.2: Calculate Championship Win Chance based on Defense Points and Offence Points
+Milestone 1.2: Calculate Championship Win Chance based on Defense Points and Offence Points[COMPLETE]
 
-Milestone 2: Given performance from a teams data, calculate cumulative Team Win Rates of the previous 3 years: 2021, 2020, 2019
+Milestone 2: Given performance from a teams data, calculate cumulative Team Win Rates of the previous 3 years: 2021, 2020, 2019[COMPLETE]
 
 Milestone 3: Have the Vectors of Basketball Teams fully filled in, and allow for a user to look at data
 
