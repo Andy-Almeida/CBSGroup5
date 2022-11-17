@@ -7,10 +7,11 @@ No need to put this in the main.h -> The headerfiles called already import this
 
 #ifndef headers_h
 #define headers_h
-
 #include <iostream>
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <fstream>
+#include <sstream>
 
 #endif
