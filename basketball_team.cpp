@@ -1,7 +1,7 @@
 /*
 Group Members: Andy Almeida, Kao Saephan, Nicholas Valencia, Umaran Ahmadzai, Shanil Prasad
 */
- 
+
 #include "basketball_team.h"
 #include "headers.h"
 
@@ -15,7 +15,7 @@ namespace BASKETBALL_SPACE{
   
   //REMEMBER EVERYTHING MUST STAY INSIDE THE NAMESPACE BASKETBALL_SPACE
 
-  //default Constructor
+  //Default Constructor
   Basketball_Team::Basketball_Team(){
       name = "N/A";
       conference = "N/A";
@@ -27,9 +27,9 @@ namespace BASKETBALL_SPACE{
       weightedScore = 0;
       probableChance = yourChampionshipChance::NA;
   }
-  
-   //Paramaterized Constructor
-  Basketball_Team::Basketball_Team(string newName, string newConference, double newGamesWon, double newGamesPlayed, double newOffensePoints, double newDefensePoints) {
+
+  //Paramaterized Constructor 
+  Basketball_Team::Basketball_Team(string newName, string newConference, double newGamesPlayed, double newGamesWon, double newOffensePoints, double newDefensePoints) {
       name = newName;
       conference = newConference;
       gamesWon = newGamesWon;
@@ -41,7 +41,7 @@ namespace BASKETBALL_SPACE{
       probableChance = yourChampionshipChance::NA;
   }
 
-  //Setters 
+  //Setters
   void Basketball_Team::setName(string newName){
     name = newName;
   }
@@ -114,48 +114,13 @@ namespace BASKETBALL_SPACE{
   yourChampionshipChance Basketball_Team::getProbableChance() const{
     return probableChance;
   }
-  //Getters
-    string Basketball_Team::getName() const{
-      return name;
-    }
 
-    string Basketball_Team::getConference() const{
-      return conference;
-    }
-
-    double Basketball_Team::getGamesWon() const{
-      return gamesWon;
-    }
-
-    double Basketball_Team::getGamesPlayed() const{
-      return gamesPlayed;
-    }
-
-    double Basketball_Team::getWinRate() const{
-      return winRate;
-    }    
-
-    double Basketball_Team::getOffensePoints() const{
-      return offensePoints;
-    }
-    
-    double Basketball_Team::getDefensePoints() const{
-      return defensePoints;
-    }
-    double Basketball_Team::getWeightedScore() const{
-      return weightedScore;
-    }
-
-    yourChampionshipChance Basketball_Team::getProbableChance() const{
-      return probableChance;
-    }
-
-  //this function calculates win rate based on games won and games played in a single year
+  //this function calculates win rate based on games won and games played in a single year 
   double Basketball_Team::calculateWinrate(double gamesWon, double gamesPlayed){
-    return (gamesWon / gamesPlayed);
+    return ((gamesWon / gamesPlayed)*100);
   }
-  
-   //this function takes in the raw offense, defense, and winRate scores then gives them a weighted score out of 100. 
+
+  //this function takes in the raw offense, defense, and winRate scores then gives them a weighted score out of 100. 
   //Took out winRate as part of the score b/c we dont know avg scores so it became too difficult to predict how to assign points based on win rate
   double Basketball_Team::calculateWeightedScore(double offensePoints, double defensePoints){
     //control variable track score
@@ -197,11 +162,26 @@ namespace BASKETBALL_SPACE{
 
     //output the control variable
     return weightScore;
-  } 
+  } //end of calculate weighted score
 
-  
+  //this function simply turns the yourChampionshipChance enumerated class object into a string 
+  string Basketball_Team::toStr_yourChampionshipChance( yourChampionshipChance chance ){
+      switch (chance){
+          case yourChampionshipChance::GreatChance:
+              return "Great Chance";
+          case yourChampionshipChance::GoodChance:
+              return "Good Chance";
+          case yourChampionshipChance::LowChance:
+              return "Low Chance";
+          case yourChampionshipChance::ExtremelyUnlikely:
+              return "Extremely Unlikely";
+          default:  //this will not happen. just to make this compiler not generate a warning.
+              return "Nobody Knows, this could be an error";  
+      } 
+  }
+
   //based on the weighted score out of 100, this function calculates yourChampionshipChance from
-  //enum class yourChampionshipChance {GreatChance, GoodChance, LowChance, ExtremelyUnlikely }
+  //enum class yourChampionshipChance {GreatChance, GoodChance, LowChance, ExtremelyUnlikely } 
   yourChampionshipChance Basketball_Team::calculateTeamsChances(double weightedScore){
     if (weightedScore <= 100.0 && weightedScore >= 0.0){
       if (weightedScore >= 90){
