@@ -249,6 +249,38 @@ namespace BASKETBALL_SPACE{
         }
     ip.close();
     } // end of setYear2021 function 
+  
+  //check if team exists in the vector list
+    bool BasketballTeamVector::checkName(string nameCheck){
+        for (int i = 0; i < year2021.size(); i++){
+            if (nameCheck == year2021.at(i).getName()){
+                return true;
+            }
+        }
+
+        for (int i = 0; i < year2020.size(); i++){
+            if (nameCheck == year2020.at(i).getName()){
+                return true;
+            }
+        }
+
+        for (int i = 0; i < year2019.size(); i++){
+            if (nameCheck == year2019.at(i).getName()){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    //print function
+    void BasketballTeamVector::printData(string teamName){
+        cout << "Cumulative win rate for " << teamName << " is: " << this->calcTotalWinrate(teamName) << " %" << endl;
+        cout << "Conference: " << this->getTeam(teamName, 2020).getConference() << endl;
+        cout << teamName << " Weighted Score for 2020 is: " << this->getTeam(teamName, 2020).calculateWeightedScore(this->getTeam(teamName, 2020).getOffensePoints(), this->getTeam(teamName, 2020).getDefensePoints()) << " of 100" << endl;
+        cout << teamName << " Chance at Championship for 2020 is: " << this->getTeam(teamName, 2020).toStr_yourChampionshipChance(this->getTeam(teamName, 2020).calculateTeamsChances( this->getTeam(teamName,2020).calculateWeightedScore( this->getTeam(teamName,2020).getOffensePoints(),  this->getTeam(teamName, 2020).getDefensePoints()))) << endl;
+    }
+
 
 
 } //end of BASKETBALL_SPACE
