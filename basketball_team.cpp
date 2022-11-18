@@ -3,7 +3,6 @@ Group Members: Andy Almeida, Kao Saephan, Nicholas Valencia, Umaran Ahmadzai, Sh
 */
 
 #include "basketball_team.h"
-#include "headers.h"
 
 namespace BASKETBALL_SPACE{
   //implement all functions for class basketball_team
@@ -120,7 +119,7 @@ namespace BASKETBALL_SPACE{
     return ((gamesWon / gamesPlayed)*100);
   }
 
-   //this function takes in the raw offense, defense, and winRate scores then gives them a weighted score out of 100. 
+  //this function takes in the raw offense, defense, and winRate scores then gives them a weighted score out of 100. 
   double Basketball_Team::calculateWeightedScore(double offensePoints, double defensePoints){
     //control variable track score
     double weightScore = 0;
@@ -196,18 +195,18 @@ namespace BASKETBALL_SPACE{
               return "Nobody Knows, this could be an error";  
       } 
   }
-  
+
   //based on the weighted score out of 100, this function calculates yourChampionshipChance from
   //enum class yourChampionshipChance {GreatChance, GoodChance, LowChance, ExtremelyUnlikely } 
   yourChampionshipChance Basketball_Team::calculateTeamsChances(double weightedScore){
     if (weightedScore <= 100.0 && weightedScore >= 0.0){
-      if (weightedScore >= 75){
+      if (weightedScore >= 70){
         return yourChampionshipChance::HighChance;
       }
-      else if(weightedScore >= 60 && weightedScore < 75) {
+      else if(weightedScore >= 55 && weightedScore < 70) {
         return yourChampionshipChance::MedChance;
       }
-      else if(weightedScore >= 40 && weightedScore < 60) {
+      else if(weightedScore >= 40 && weightedScore < 55) {
         return yourChampionshipChance::LowChance;
       }
       else if(weightedScore < 40) {
@@ -215,6 +214,8 @@ namespace BASKETBALL_SPACE{
       }
     }
     return yourChampionshipChance::NA;
+
   }//end of the function 
+
   
 } //end of BASKETBALL_SPACE
