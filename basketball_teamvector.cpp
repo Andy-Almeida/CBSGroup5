@@ -4,7 +4,6 @@ Implementation of the basketball_teamvector.h functions
 */
 
 #include "basketball_teamvector.h"
-#include "headers.h"
 #include "basketball_team.h"
 
 
@@ -62,6 +61,42 @@ namespace BASKETBALL_SPACE{
 
         return totalWinrate;               
     } //end of calculate total winrate
+
+    //Calculates total weighted score over 2019, 2020, 2021
+    double BasketballTeamVector::calcTotalWeighted(string teamName){
+        double totalWeight = 0;
+        double weight2019 = 0;
+        double weight2020 = 0;
+        double weight2021 = 0;
+
+
+        //get winrate from 2019
+        for (int i = 0; i < year2019.size(); i++){   
+                if (year2019.at(i).getName() == teamName) {
+                    weight2019 = year2019.at(i).calculateWeightedScore(year2019.at(i).getOffensePoints(), year2019.at(i).getDefensePoints());
+                }
+            }
+
+        //get winrate from 2020
+        for (int i = 0; i < year2020.size(); i++){   
+                if (year2020.at(i).getName() == teamName) {
+                    weight2020 = year2020.at(i).calculateWeightedScore(year2020.at(i).getOffensePoints(), year2020.at(i).getDefensePoints());
+                }
+            } 
+
+        //get winrate from 2021
+        for (int i = 0; i < year2021.size(); i++){   
+                if (year2021.at(i).getName() == teamName) {
+                    weight2021 = year2021.at(i).calculateWeightedScore(year2021.at(i).getOffensePoints(), year2021.at(i).getDefensePoints());
+                }
+            }
+        
+        //average the winrates across 2021, 2020, 2019
+        totalWeight = ((weight2019 + weight2020 + weight2021) / 3);
+
+        return totalWeight;               
+    } 
+
 
     //Get team from teamlist using thier name
     Basketball_Team BasketballTeamVector::getTeam(string name, int year){
@@ -249,8 +284,8 @@ namespace BASKETBALL_SPACE{
         }
     ip.close();
     } // end of setYear2021 function 
-  
-  //check if team exists in the vector list
+
+    //check if team exists in the vector list
     bool BasketballTeamVector::checkName(string nameCheck){
         for (int i = 0; i < year2021.size(); i++){
             if (nameCheck == year2021.at(i).getName()){
@@ -275,12 +310,37 @@ namespace BASKETBALL_SPACE{
 
     //print function
     void BasketballTeamVector::printData(string teamName){
-        cout << "Cumulative win rate for " << teamName << " is: " << this->calcTotalWinrate(teamName) << " %" << endl;
-        cout << "Conference: " << this->getTeam(teamName, 2020).getConference() << endl;
-        cout << teamName << " Weighted Score for 2020 is: " << this->getTeam(teamName, 2020).calculateWeightedScore(this->getTeam(teamName, 2020).getOffensePoints(), this->getTeam(teamName, 2020).getDefensePoints()) << " of 100" << endl;
-        cout << teamName << " Chance at Championship for 2020 is: " << this->getTeam(teamName, 2020).toStr_yourChampionshipChance(this->getTeam(teamName, 2020).calculateTeamsChances( this->getTeam(teamName,2020).calculateWeightedScore( this->getTeam(teamName,2020).getOffensePoints(),  this->getTeam(teamName, 2020).getDefensePoints()))) << endl;
-    }
+        double totalW=(this->calcTotalWinrate(teamName));
+        cout << endl;
 
+        string c1 = (this->getTeam(teamName, 2020).getConference());//gets the conference and stores it for formatting output
+        double c2 = this->calcTotalWeighted(teamName);//for the weighted score
+        string c3 = (this->getTeam(teamName, 2020).toStr_yourChampionshipChance(this->getTeam(teamName, 2020).calculateTeamsChances(this->calcTotalWeighted(teamName))));//for chance
+        cout << endl;
+        cout << "\t\t     **------ ALL INFORMAION IS BELOW ------**"<<endl<<endl;
+
+        cout << "\t\t---------------------------------------------------------------------------"<<endl;
+        cout << "\t\t|\tCumulative win rate for " << teamName << " is: " << fixed << setprecision(1) << totalW << " %" << endl;
+        cout << setw(20-(teamName.length()));
+        cout << "|"<<endl;//Should be good, end of cumalitive win
+        //conference
+        cout << "\t\t|\tConference: "<<c1;
+        cout << setw(55-(c1.length()));
+        cout << "|"<<endl;//already good
+
+        cout <<"\t\t|\t"<< teamName << " Cumulative Weighted Score is: " << c2 << " of 100";
+
+        cout << setw(30-(teamName.length()+3));
+        cout << "|"<<endl;
+
+        cout <<"\t\t|\t"<< teamName << " Chance at Championship for next season is: " <<  c3;
+        cout <<setw(23-(teamName.length()+c3.length()));
+        cout << "|"<<endl;
+
+        cout << endl<<"\t**------ END OF ALL INFORMATION, READ BELOW FOR NEXT OPTION ------**" << endl;
+
+
+    }
 
 
 } //end of BASKETBALL_SPACE
