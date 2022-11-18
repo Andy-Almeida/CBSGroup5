@@ -10,13 +10,20 @@ contains the to_string function for our enumerated class
 #ifndef basketball_team_h
 #define basketball_team_h
 
-#include "headers.h"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
+
 
 namespace BASKETBALL_SPACE{
   using namespace std;
   
   //A class to classify each team with a Championship Win Chance -kao
-  enum class yourChampionshipChance {GreatChance, GoodChance, LowChance, ExtremelyUnlikely, NA};
+  enum class yourChampionshipChance {HighChance, MedChance, LowChance, ExtremelyUnlikely, NA};
 
   class Basketball_Team{
     public:
