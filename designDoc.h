@@ -20,7 +20,9 @@ What this whole program does: This need revising
             data: {GreatChance, GoodChance, LowChance, ExtremelyUnlikely, NA (which is rare)}
   
         class Basketball_Team
-            description: a class that will allow for data allocation for each team, which will allow us to make the algorithms needed
+            description: a class that would represent a basketball team.
+                            a basketball team would have a team name, the conferenece that the team plays for, and performance statistics for the season.
+                            calculations are included to help provide more data on topics such as WinRates and Probabilty of Championship Win.
             data:
                 string name;
                 string conference;
@@ -55,16 +57,8 @@ What this whole program does: This need revising
 
                 }
 
-                Getters [COMPLETED]
-
-                Setters [COMPLETE]
-
-                The following calculations can be placed within the Constructor allowing for the objects data to be completed on Instantiation
                 double calculateWinrate(double gamesWon, double gamesPlayed); [COMPLETE]
-                    description: calculate a winrate based on gamesplayed and gameswon
-                    Pseudo:{
-                        return gamesWon/gamesPlayed;
-                    }
+                    description: calculate a winrate based on gamesplayed and gameswon and return as a percentage/100
 
                 double calculateWeightedScore(); [COMPLETE]
                     description: calculates a score from a base of 100 based on stats
@@ -72,75 +66,58 @@ What this whole program does: This need revising
                 yourChampionshipChance calculateTeamsChances(); [COMPLETE]
                     description: given the weighted score, apply an appropriate probable chance
 
-                void printChanceAtChampionship(); [COMPLETE] //the toStr_yourChampionshipChance works, we can override at a later time
-                    I personally believe we should make getters, but I prefer overriding <<
-                    Pseduo: {
-                        return probableChance //this is possible with overriding!
-                    }
+                string toStr_yourChampionshipChance( yourChampionshipChance chance ); [COMPLETE] 
+                    description: print the teams winChance
+
+                Getters [COMPLETED]
+
+                Setters [COMPLETE]
 
     basketball_teamvector.h
-        description: contains a class that will store the vector of basketball_teams along with potential functions
-        class Team_Vector
+        description: contains a class that will store the vector of basketball_teams along with usable functions
+        class BasketballTeamVector
             data: 
-                vector<Basketball_Team>
+                vector<Basketball_Team> teamlist -> A list of all of the teams
+                vector<Basketball_Team> year2019 -> A list of the teams stats from 2019
+                vector<Basketball_Team> year2020 -> A list of the teams stats from 2020
+                vector<Basketball_Team> year2021 -> A list of the teams stats from 2021
             functions:
+                Default Constructor [COMPLETED]
+                BasketballTeamVector(); 
+                    Make default stats
+                        
                 void addTeam(Basketball_Team team); [COMPLETED]
-                void getTeam(string name);  [COMPLETED]
-                double getTeamWin(string name); [COMPLETE]
-                yourChampionshipChance getWinChance(string name); [COMPLETE]
+                    description: Adds team to the list
 
+                double calcTotalWinrate(string teamname);
+                    description: Calculates total winrate over 2019, 2020, 2021
 
-    //Cumulative WinRate Given Multiple Years
-    double calcWinRate(string name, vector<Basketball_Team> Year1, vector<Basketball_Team> year2, vector<Basketball_Team> year3){ [COMPLETE]
-        Total = Year1.getTeamWin(name) + Year2.getTeamWin(name) + Year3.getTeamWin(name);
-        return Total/3;
-    }
+                double calcTotalWeighted(string teamName); 
+                    description: Calculates total weighted score over 2019, 2020, 2021
 
-    //Cumulative WinChance Given Multiple Years
-    yourChampionshipChance calcCWinChance(string name, vector<Basketball_Team> Year1, vector<Basketball_Team> year2, vector<Basketball_Team> year3){ [**NEEDS WORK**]
-        TotalOffencePoints  = Year1.getOffencePoints(name) + Year2.getOffencePoints(name) + Year3.getOffencePoints(name);
-        TotalDefencePoints  = Year1.getDefencePoints(name) + Year2.getDefencePoints(name) + Year3.getDefencePoints(name);
-        CWeightedScore = calculateWeightedScore(TotalOffencePoints, TotalDefencePoints);
-        return calculateTeamsChances(CWeightedScore);
-    }
+                Basketball_Team getTeam(string name, int year);  [COMPLETED]
+                    description: Get team from the list using thier name and year
 
+                void printTop5(Basketball_Team team);
+                    description:
+                
+                bool checkName(string nameCheck);
+                    description: checks if the name if the school is in the list
 
-    csv_reader.h [**NEEDS WORK**]
-        description:    Honestly, I struggle with file reading, but I envision it being in its own file
-            maybe along the lines of allowing us to do this
+                void setYear2019();
+                void setYear2020();
+                void setYear2021();
+                    description: this function will set the vector with basketball team objects using cbb19.csv and cbb20.csv and cbb21.csv
 
-        main{
-            basketball_teamvector list1 = csv_reader.basketballreader("FILENAME");
-        }
-        Pseudo?:
-            for each line
-                make a basketballteam(whatever was on the line)
-                vector.add(basketballteam)
-            
-            return vector 
+                void printData(string teamName);
+                    description: print function: cumulative winrate, conference, weighted score, Chance at championship
 
-    UI.h 
-        description: If we wanted a UI, I think it could be pretty easy if the team vector has good functions
+    basketball_Main.cpp
+        description: This is the main page for our work.
 
-    Overridding.h 
-        description: Okay I be wilin out but hear me out, I love doing this for my programs, and it makes debugging a dream
+    unittests.h
+        description: This is an area to test code.
 
-        //Overriding << Operator to cout << Baskteball_Team
-        ostream & operator<<(ostream & out, const Basketball_Team & team);
-
-        //Overriding << Operator to cout << yourChampionshipChance
-        ostream & operator<<(ostream & out, const yourChampionshipChance & probableChance);
-
-        //Overriding << Operator to cout << vector<Basketball_Team>
-        ostream & operator<<(ostream & out, const vector<Basketball_Team> & teamlist);
-
-    Unittests.h
-        //An area for unit testing and building our program.
-
-    For the headers, I might be doing too much with this many files, but a file for header files could be good too!
-*/
-
-/*
 Personal Milestones:
 
 Milestone 1: A Completed Vector List of Basketball PLayers pulled from a CSV File of Data from a Single Year, and make multiple ones for multiple years. [COMPLETE]
