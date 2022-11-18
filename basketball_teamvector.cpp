@@ -317,27 +317,30 @@ namespace BASKETBALL_SPACE{
         double c2 = this->calcTotalWeighted(teamName);//for the weighted score
         string c3 = (this->getTeam(teamName, 2020).toStr_yourChampionshipChance(this->getTeam(teamName, 2020).calculateTeamsChances(this->calcTotalWeighted(teamName))));//for chance
         cout << endl;
-        cout << "\t\t     **------ ALL INFORMAION IS BELOW ------**"<<endl<<endl;
+        cout << "\t\t\t\t********------ ALL INFORMAION IS BELOW ------********"<<endl<<endl;
 
-        cout << "\t\t---------------------------------------------------------------------------"<<endl;
-        cout << "\t\t|\tCumulative win rate for " << teamName << " is: " << fixed << setprecision(1) << totalW << " %" << endl;
-        cout << setw(20-(teamName.length()));
+        cout << "\t\t----------------------------------------------------------------------------------"<<endl;
+        cout << "\t\t|\tCumulative win rate for " << teamName << " is: " << fixed << setprecision(1) << totalW << " %";
+        cout << setw(39-(teamName.length()));
         cout << "|"<<endl;//Should be good, end of cumalitive win
+        
         //conference
         cout << "\t\t|\tConference: "<<c1;
-        cout << setw(55-(c1.length()));
+        cout << setw(62-(c1.length()));
         cout << "|"<<endl;//already good
-
-        cout <<"\t\t|\t"<< teamName << " Cumulative Weighted Score is: " << c2 << " of 100";
-
-        cout << setw(30-(teamName.length()+3));
+       
+        //CUMULATIVE WEIGHTED SCORE
+        cout << "\t\t|\t"<< teamName << " Cumulative Weighted Score is: " << c2 << " of 100";
+        cout << setw(32-(teamName.length()));
+        cout << "|"<<endl;
+       
+        //Chance at Championship
+        cout << "\t\t|\t"<< teamName << " Chance at Championship for next season is: " <<  c3;
+        cout << setw(30-(teamName.length()+c3.length()));
         cout << "|"<<endl;
 
-        cout <<"\t\t|\t"<< teamName << " Chance at Championship for next season is: " <<  c3;
-        cout <<setw(23-(teamName.length()+c3.length()));
-        cout << "|"<<endl;
-
-        cout << endl<<"\t**------ END OF ALL INFORMATION, READ BELOW FOR NEXT OPTION ------**" << endl;
+        cout << "\t\t----------------------------------------------------------------------------------"<<endl;
+        cout <<endl<<"\t\t    ******------ END OF ALL INFORMATION, READ BELOW FOR NEXT OPTION ------******" << endl;
 
 
     }
