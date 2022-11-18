@@ -14,7 +14,7 @@ namespace BASKETBALL_SPACE{
   
   //REMEMBER EVERYTHING MUST STAY INSIDE THE NAMESPACE BASKETBALL_SPACE
 
-  //Default Constructor
+  //Using a Default Constructor to represent all default parameters
   Basketball_Team::Basketball_Team(){
       name = "N/A";
       conference = "N/A";
@@ -27,7 +27,7 @@ namespace BASKETBALL_SPACE{
       probableChance = yourChampionshipChance::NA;
   }
 
-  //Paramaterized Constructor 
+  //Using a Paramaterized Constructor to help accept a specific number of parameters
   Basketball_Team::Basketball_Team(string newName, string newConference, double newGamesPlayed, double newGamesWon, double newOffensePoints, double newDefensePoints) {
       name = newName;
       conference = newConference;
@@ -40,7 +40,7 @@ namespace BASKETBALL_SPACE{
       probableChance = yourChampionshipChance::NA;
   }
 
-  //Setters
+  //Setters, which is being used to set the variable value
   void Basketball_Team::setName(string newName){
     name = newName;
   }
@@ -77,7 +77,7 @@ namespace BASKETBALL_SPACE{
     probableChance = newChance;
   }
 
-  //Getters
+  //Getters, which is being used to retrieve the valueable value
   string Basketball_Team::getName() const{
     return name;
   }
