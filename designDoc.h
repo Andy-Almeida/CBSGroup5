@@ -17,10 +17,10 @@ What this whole program does: This need revising
     basketball_team.h
         enum class yourChampionshipChance
             description: a class that contains four labels correlating to levels of chance to win a championship
-            data: {GreatChance, GoodChance, LowChance, ExtremelyUnlikely, NA}
+            data: {GreatChance, GoodChance, LowChance, ExtremelyUnlikely, NA (which is rare)}
   
         class Basketball_Team
-            description: a class that will allow for data allocation for each team
+            description: a class that will allow for data allocation for each team, which will allow us to make the algorithms needed
             data:
                 string name;
                 string conference;
