@@ -1,28 +1,24 @@
 /*
-Everything in this file is commented!!
 
 Group Members: Andy Almeida, Kao Saephan, Nicholas Valencia, Umaran Ahmadzai, Shanil Prasad
 
 
-What this whole program does: This need revising
+What this whole program does: 
     Main function:
-        1) read in files from 2021, 2020, and 2019 to obtain the team names, games won, games played. 
-        2) Creates a basketball_team class that will store the team names, games won, games played
-        3) Calculates the win rate of these teams and store it in basketball_team 
-        4) Creates a team_strengths class that calculates the weighted score then team's chances and 
-            stores the string version of the chance in basketball_team
-        5) Creates a vector<basketball_team> that stores basketball_team objects
-        6) Call printStatistics() to print out a team's teamName, weightedScore, winRate, thisTeamsChances.
-
+         1) gets input team name from the user
+         2) if the user inputs a team name, then the main function will call the functions checkName() and printData()
+         3) checkName() checks to see if that team name is in the vector of basketball team objects, prints error message if not
+         4) if found then printData() will print the avgerage win rate, conference, average weighted score, and a probability chance of winning next championship!
+    
+    
     basketball_team.h
+        //description: a class that contains four labels correlating to levels of chance to win a championship
         enum class yourChampionshipChance
-            description: a class that contains four labels correlating to levels of chance to win a championship
-            data: {GreatChance, GoodChance, LowChance, ExtremelyUnlikely, NA (which is rare)}
+            data: {HighChance, MedChance, LowChance, ExtremelyUnlikely, NA}
   
-        class Basketball_Team
-            description: a class that would represent a basketball team.
-                            a basketball team would have a team name, the conferenece that the team plays for, and performance statistics for the season.
-                            calculations are included to help provide more data on topics such as WinRates and Probabilty of Championship Win.
+
+        class Basketball_Team {
+            //description: a class that will allow for data allocation for each team
             data:
                 string name;
                 string conference;
@@ -35,97 +31,229 @@ What this whole program does: This need revising
                 yourChampionshipChance probableChance;
             functions:
 
-                Default Constructor [COMPLETED]
-                Basketball_Team(); 
-                    Make default stats
-                    double = 0
-                    string "N/A"
-                    yourChapmionshipChance = "Extremely Unlikely" or we could make a new member to the list "N/A"
+                //Default Constructor 
+                    Basketball_Team::Basketball_Team(){
+                    name = "N/A";
+                    conference = "N/A";
+                    gamesWon = 0;
+                    gamesPlayed = 0;
+                    winRate = 0;
+                    offensePoints = 0;
+                    defensePoints = 0;
+                    weightedScore = 0;
+                    probableChance = yourChampionshipChance::NA;
+                } //end of function
 
 
-                Parameterize Constructor [COMPLETE]
-                Basketball_Team(string name, string conference, gamesWon, gamesPlayed, offensePoints, defensePoints){
-                    name = name;
-                    conference = conference;
-                    gamesWon = gamesWon
-                    gamesPlayed = gamesPlayed;
-                    offencePoints = offencePoints;
-                    defencePoints = defencePoints;
-                    winRate = this.calculateWinrate();? or with parameters if this is not possible which i dont think it is
-                    weightedScore = this.calculatedWeightedScore();
-                    probableChance = this.calculateTeamsChances
+                //Parameterize Constructor 
+                Basketball_Team::Basketball_Team(string newName, string newConference, double newGamesPlayed, double newGamesWon, double newOffensePoints, double newDefensePoints) {
+                    name = newName;
+                    conference = newConference;
+                    gamesWon = newGamesWon;
+                    gamesPlayed = newGamesPlayed;
+                    winRate = 0;
+                    offensePoints = newOffensePoints;
+                    defensePoints = newDefensePoints;
+                    weightedScore = 0;
+                    probableChance = yourChampionshipChance::NA;
+                } //end of function
 
-                }
 
-                double calculateWinrate(double gamesWon, double gamesPlayed); [COMPLETE]
-                    description: calculate a winrate based on gamesplayed and gameswon and return as a percentage/100
+                Getters that return a const data member
 
-                double calculateWeightedScore(); [COMPLETE]
-                    description: calculates a score from a base of 100 based on stats
 
-                yourChampionshipChance calculateTeamsChances(); [COMPLETE]
-                    description: given the weighted score, apply an appropriate probable chance
+                Setters that can set the new data members
 
-                string toStr_yourChampionshipChance( yourChampionshipChance chance ); [COMPLETE] 
-                    description: print the teams winChance
 
-                Getters [COMPLETED]
+                //description: calculate a winrate based on gamesplayed and gameswon
+                double calculateWinrate(double gamesWon, double gamesPlayed){ 
+                    return (gamesWon/gamesPlayed)
+                } //end of function
 
-                Setters [COMPLETE]
+
+                //description: calculates a score from a base of 100 based on Offense and Defense points and cumulative win rate
+                double calculateWeightedScore(double offensePoints, double defensePoints){
+                    if(offense points is this){
+                        apply apropriate points
+                    }
+
+                    if(defense points is this){
+                        apply apropriate points
+                    }
+
+                    if(win rate is this){
+                        apply apropriate points
+                    }
+                } // end of function
+
+
+                //description: given the weighted score, apply an appropriate probable chance
+                yourChampionshipChance calculateTeamsChances(double weightedScore){
+                    switch(whatever the weighted score is){
+                        apply apropriate enumerated label or chance
+                    }
+                } //end of function
+
+
+                //converts the enumerated object(our label) into a string.
+                string toStr_yourChampionshipChance( yourChampionshipChance chance ){
+                    switch(whatever the enumerated object is){
+                        apply apropriate to_string conversion
+                    }
+                } //end of function  
+
+        } //end of class Basketball_Team
+    } //end of basketball_team.h and .cpp too
+
 
     basketball_teamvector.h
-        description: contains a class that will store the vector of basketball_teams along with usable functions
-        class BasketballTeamVector
+        description: contains a class that will store the vector of basketball_teams along with potential functions
+        class Team_Vector {
             data: 
-                vector<Basketball_Team> teamlist -> A list of all of the teams
-                vector<Basketball_Team> year2019 -> A list of the teams stats from 2019
-                vector<Basketball_Team> year2020 -> A list of the teams stats from 2020
-                vector<Basketball_Team> year2021 -> A list of the teams stats from 2021
+                vector<Basketball_Team> teamlist; //for future use if we wanted to combine all 3 years
+                vector<Basketball_Team> year2019;
+                vector<Basketball_Team> year2020;
+                vector<Basketball_Team> year2021;
+
+
             functions:
-                Default Constructor [COMPLETED]
-                BasketballTeamVector(); 
-                    Make default stats
-                        
-                void addTeam(Basketball_Team team); [COMPLETED]
-                    description: Adds team to the list
-
-                double calcTotalWinrate(string teamname);
-                    description: Calculates total winrate over 2019, 2020, 2021
-
-                double calcTotalWeighted(string teamName); 
-                    description: Calculates total weighted score over 2019, 2020, 2021
-
-                Basketball_Team getTeam(string name, int year);  [COMPLETED]
-                    description: Get team from the list using thier name and year
-
-                void printTop5(Basketball_Team team);
-                    description:
+                void addTeam(Basketball_Team team); //for future use, adds new team to teamlist
                 
-                bool checkName(string nameCheck);
-                    description: checks if the name if the school is in the list
+                
+                //iterates through each year and returns the team object when found
+                void getTeam(string name, int year){
+                    if(2019){
+                        check year2019 vector for team name and return the team
+                    }
+                    if(2020){
+                        check year2020 vector for team name and return the team
+                    }
+                    if(2021){
+                        check year2021 vector for team name and return the team
+                    }
+                } //end of function 
+                
 
-                void setYear2019();
-                void setYear2020();
-                void setYear2021();
-                    description: this function will set the vector with basketball team objects using cbb19.csv and cbb20.csv and cbb21.csv
+                //Calculates average winrate over the last 3 years
+                double calcTotalWinrate(string teamname){
+                    if(iterate through vector named year2019) {
+                        get this team's winrate for 2019
+                    }
+                    
+                    if(iterate through vector named year2020) {
+                        get this team's winrate for 2020
+                    }
 
-                void printData(string teamName);
-                    description: print function: cumulative winrate, conference, weighted score, Chance at championship
+                    if(iterate through vector named year2021) {
+                        get this teams winrate for 2021
+                    }
+                    returns an average win rate of a team based on the last 3 years
+                } //end of function
+                
 
-    basketball_Main.cpp
-        description: This is the main page for our work.
+                //Calculates average weighted score over the last 3 years
+                double calcTotalWeighted(string teamName){
+                    if(iterate through vector named year2019) {
+                        get this team's weighted score for 2019
+                    }
+                    
+                    if(iterate through vector named year2020) {
+                        get this team's weighted score for 2020
+                    }
 
-    unittests.h
-        description: This is an area to test code.
+                    if(iterate through vector named year2021) {
+                        get this teams weighted score for 2021
+                    }
+                    returns an average weighted score of a team based on the last 3 years
+                } //end of function
+                
 
-Personal Milestones:
+                //checks to see if there is a team by that name
+                bool checkName(string nameCheck){
+                    if(iterate through vector named year2019) {
+                        check to see if this team participated in 2019, returns true if found
+                    }
+                    
+                    if(iterate through vector named year2020) {
+                        check to see if this team participated in 2020, returns true if found
+                    }
 
-Milestone 1: A Completed Vector List of Basketball PLayers pulled from a CSV File of Data from a Single Year, and make multiple ones for multiple years. [COMPLETE]
+                    if(iterate through vector named year2021) {
+                        check to see if this team participated in 2021, returns true if found
+                    }
+                    returns false otherwise
+                } //end of function
+                
 
-Milestone 1.2: Calculate Championship Win Chance based on Defense Points and Offence Points[COMPLETE]
+                //sets all the data from 2019 csv file into a vector. Those elements for the vectors are then assigned to a basketball team object.
+                //That basketball team object that has all the data fields assigned is then pushed into a vector 
+                void setYear2019(){
+                    open the file for 2019
 
-Milestone 2: Given performance from a teams data, calculate cumulative Team Win Rates of the previous 3 years: 2021, 2020, 2019[COMPLETE]
+                    if(file not open){
+                        output error line
+                    }
 
-Milestone 3: Have the Vectors of Basketball Teams fully filled in, and allow for a user to look at data
+                    while(not end of file){
+                        tokenize file into words using delimiter ","(a comma)
+                        add all the words into a temp vector of strings
+                    }
+
+                    for(iterate through temp vector of strings){
+                        pull relevant information, store that information into a team, and push the team into vector for this year
+                    }
+                    close the file for 2019
+                } //end of function
+                
+
+                //sets all the data from 2020 csv file. Those elements for the vectors are then assigned to a basketball team object.
+                //That basketball team object that has all the data fields assigned is then pushed into a vector 
+                void setYear2020(){
+                    open the file for 2020
+
+                    if(file not open){
+                        output error line
+                    }
+
+                    while(not end of file){
+                        tokenize file into words using delimiter ","(a comma)
+                        add all the words into a temp vector of strings
+                    }
+
+                    for(iterate through temp vector of strings){
+                        pull relevant information, store that information into a team, and push the team into vector for this year
+                    }
+                    close the file for 2020
+                } 
+               
+
+                //sets all the data from 2021 csv file. Those elements for the vectors are then assigned to a basketball team object.
+                //That basketball team object that has all the data fields assigned is then pushed into a vector 
+                void setYear2021(){
+                    open the file for 2021
+
+                    if(file not open){
+                        output error line
+                    }
+
+                    while(not end of file){
+                        tokenize file into words using delimiter ","(a comma)
+                        add all the words into a temp vector of strings
+                    }
+
+                    for(iterate through temp vector of strings){
+                        pull relevant information, store that information into a team, and push the team into vector for this year
+                    }
+                    close the file for 2021
+                } //end of function
+               
+
+                //This functions prints out team name, conference, a weighted score, and the probability of winning championship!
+                void printData(string teamName){
+                    print all relevant data and format it to look professional
+                } //end of function 
+        } //end of class Team_Vector
+    } //end of basketball_teamvector.h and the .cpp too 
 
 */
+
